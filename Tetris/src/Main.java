@@ -1,13 +1,13 @@
-
+/**
+ * Starts the program
+ * @author Jonas
+ */
 public class Main {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		System.out.println("Hej");
-		// Just testing
+		Window win = new Window();
+	//	win.setVisible(true);
 	}
 
 }

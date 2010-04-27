@@ -120,28 +120,34 @@ public class ChangeServer extends javax.swing.JFrame {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
         String s = jTextField1.getText();
+        reconnect(s);
+    }
+    
+    private void reconnect(String s){
         s.trim();
+        String[] server = s.split(":");
+        int port = Integer.parseInt(server[1]);
+        s = server[0];
         if(s.length()>1){
                 jTextField1.setText("");
                 jLabel3.setText("Server changed to \""+s+"\"");
-                client.setServer(s);
+                if(client.connect(port, s))
+                	jLabel3.setText("Reconnection to server " + s + " was successful!");
+                else
+                	jLabel3.setText("Could not connect to the server, connection unchanged.");
         }
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    	
         String s = jTextField1.getText();
-        s.trim();
-        if(s.length()>1){
-                jTextField1.setText("");
-                jLabel3.setText("Server changed to \""+s+"\"");
-                client.setServer(s);
-        }
+        reconnect(s);
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO choose default server
         jLabel3.setText("Server reset to default");
-        client.setServer("localhost");
+        client.connect(5555, "localhost");
     }
 
     // Variables declaration - do not modify

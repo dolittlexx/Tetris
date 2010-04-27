@@ -14,16 +14,16 @@ package kth.csc.inda;
 public class Window extends javax.swing.JFrame {
 
     /** Creates new form Window */
-    public Window(boolean isServer) {
-        setTitle("Lobby");
-        initialization(isServer);
+    public Window(String name, int port, String server) {
+        setTitle("Lobby - " + name);
+        initialization(name, port, server);
     }
     
-    private void initialization(boolean isServer){
+    private void initialization(String name, int port, String server){
     	initComponents();
     	client = new ChatClient();
-    	client.initialize(isServer, jTextArea1);
-    	System.out.println("Got here.");
+    	client.initialize(jTextArea1, name, port, server);
+    	setVisible(true);
     }
 
     /** This method is called from within the constructor to
